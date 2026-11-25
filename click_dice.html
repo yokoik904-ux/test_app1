@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<!-- モバイル端末用の設定 --- (*1) -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- PyScriptを読み込む --- (*2) -->
+<script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+<!-- HTMLの本体 --- (*3) -->
+<body style="text-align:center;">
+    <div><button mpy-click="show_dice">サイコロをふる</button></div>
+    <div id="disp" style="font-size:8em;">-</div>
+</body>
+<!-- Pythonのプログラム -->
+<script type="mpy">
+    import random
+    from pyscript import document  # --- (*4)
+
+    # クリックされたときに呼び出される関数 --- (*5)
+    def show_dice(event):
+        # 1から6の乱数を得る --- (*6)
+        r = random.randint(1, 6)
+        # id属性がdispのものを取得 --- (*7)
+        disp = document.getElementById("disp")
+        # dispのテキストを更新 --- (*8)
+        disp.innerText = str(r)
+</script>
